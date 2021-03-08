@@ -8,7 +8,7 @@ WEIDTH = 600
 HEIGHT = 600
 
 #colors
-bg = (255,200,150)
+bg = (200,150,100)
 body_inner = (50,175,25)
 body_outer = (100,100,200)
 red = (255,0,0)
@@ -23,6 +23,14 @@ pygame.display.set_caption("Snake")
 
 def draw_screen():
     window.fill(bg)
+    #draw grid
+    x=0
+    y=0
+    for i in range(WEIDTH//cell_size):
+        x+= cell_size
+        y+=cell_size
+        pygame.draw.line(window,(255,255,255),(x,0),(x,600))
+        pygame.draw.line(window,(255,255,255),(0,y),(600,y))
 
 def draw_score():
     score_txt = "Score: " + str(score)
@@ -95,7 +103,7 @@ while run:
         #update score
         score +=1
                     
-    if update_snake>60:
+    if update_snake>20:
         update_snake =0
         
         snake_pos = snake_pos[-1:] + snake_pos[:-1]
